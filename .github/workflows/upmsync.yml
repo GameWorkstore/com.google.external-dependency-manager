@@ -2,12 +2,13 @@ name: UPM Sync
 on:
   push:
     branches:
-      - 'main'
+      - main
   workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      base: https://dl.google.com/games/registry/unity/com.google.external-dependency-manager/com.google.external-dependency-manager
       version: 1.2.165
     steps:
       - uses: actions/checkout@v2
@@ -18,8 +19,10 @@ jobs:
       
       - name: Download Package
         run: |
-          mkdir Staging && cd Staging
-          curl https://dl.google.com/games/registry/unity/com.google.external-dependency-manager/com.google.external-dependency-manager-${{ env.version }}.tgz --output content.tgz
+          rm -rf Staging
+          mkdir Staging
+          cd Staging
+          curl ${{ env.base }}-${{ env.version }}.tgz --output content.tgz
           tar -xvzf content.tgz
           rm content.tgz
           ls
