@@ -20,7 +20,7 @@ jobs:
         run: |
           mkdir Staging && cd Staging
           curl https://dl.google.com/games/registry/unity/com.google.external-dependency-manager/com.google.external-dependency-manager-${{ env.version }}.tgz --output content.tgz
-          unzip content.tgz
+          tar -xvzf content.tgz
           rm content.tgz
           ls
 
