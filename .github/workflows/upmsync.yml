@@ -37,6 +37,7 @@ jobs:
 
       - name: Cook UPM
         run: |
+          ls
           git subtree split -P Staging/package/ -b upm
           git checkout upm
           ls
