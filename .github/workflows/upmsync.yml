@@ -16,7 +16,7 @@ jobs:
           git config --local user.email "contact@gameworkstore.com"
           git config --local user.name "game-workstore-bot"
       
-      - name: Cook UPM
+      - name: Download Package
         run: |
           mkdir Staging && cd Staging
           curl https://dl.google.com/games/registry/unity/com.google.external-dependency-manager/com.google.external-dependency-manager-${{ env.version }}.tgz --output content.tgz
@@ -36,14 +36,12 @@ jobs:
           fi
 
       - name: Cook UPM
-        if: false
         run: |
-          git subtree split -P Assets/Package/ -b upm
+          git subtree split -P Staging/package/ -b upm
           git checkout upm
           ls
 
       - name: Push changes
-        if: false
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
