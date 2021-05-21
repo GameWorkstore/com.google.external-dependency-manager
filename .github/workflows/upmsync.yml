@@ -23,6 +23,7 @@ jobs:
           tar -xvzf content.tgz
           rm content.tgz
           ls
+          rm package
 
       - name: Update README
         if: false
