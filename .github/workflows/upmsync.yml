@@ -23,6 +23,9 @@ jobs:
           tar -xvzf content.tgz
           rm content.tgz
           ls
+          git add --a
+          git commit -m "Package Update ${{ env.version }}"
+          git push origin
 
       - name: Update README
         if: false
